@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="row">
+        <div class="col-6">
+            <section class="card">
+                <img class="card-img-top rounded" src="<%= farm.image %>" alt="">
+                <ul class="list-group">
+                    <li class="list-group-item card-title fs-4"><strong><%= farm.title %></strong></li>
+                    <li class="list-group-item ">地址：<%= farm.address %></li>
+                    <li class="list-group-item ">網站：<a href="<%= farm.website %>" target="_blank"><%= farm.website %></a></li>
+                    <li class="list-group-item ">電話：<%= farm.tel %></li>
+                    <li class="list-group-item ">開放時間：<%= farm.openHours %></li>
+                    <li class="list-group-item ">  
+                        信用卡：<%= farm.creditCard === true ? '可':'不可' %>&emsp;&emsp; 
+                        國旅卡：<%= farm.travelCard === true ? '可':'不可' %>
+                    </li>
+                    <li class="list-group-item ">  
+                        <a class="btn btn-info" href="/farms/<%=farm._id%>/edit">編輯景點</a>
+                        <form class="btn btn-danger" action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
+                            <span>刪除景點</span>
+                        </form>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <p class="mt-3"><%- farm.description %></p>
+    
+    
+
+    <!-- 引入後 <br> 變成字串內容而非html標籤  -->
+    <!-- 所以要改用<%-  %>，而非<%=  %>，就不會跳脫html了 -->
+
+    
+
+    <footer>
+        <a class="btn btn-success" href="/farms">返回所有景點</a>
+    </footer>
