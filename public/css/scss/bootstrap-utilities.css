@@ -50,6 +50,11 @@
   background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1)) !important;
 }
 
+.text-bg-teal {
+  color: #000 !important;
+  background-color: RGBA(32, 201, 151, var(--bs-bg-opacity, 1)) !important;
+}
+
 .text-bg-main {
   color: #000 !important;
   background-color: RGBA(212, 163, 115, var(--bs-bg-opacity, 1)) !important;
@@ -58,6 +63,21 @@
 .text-bg-one {
   color: #000 !important;
   background-color: RGBA(204, 213, 174, var(--bs-bg-opacity, 1)) !important;
+}
+
+.text-bg-two {
+  color: #000 !important;
+  background-color: RGBA(233, 237, 201, var(--bs-bg-opacity, 1)) !important;
+}
+
+.text-bg-three {
+  color: #000 !important;
+  background-color: RGBA(254, 250, 224, var(--bs-bg-opacity, 1)) !important;
+}
+
+.text-bg-four {
+  color: #000 !important;
+  background-color: RGBA(250, 237, 205, var(--bs-bg-opacity, 1)) !important;
 }
 
 .link-primary {
@@ -116,6 +136,13 @@
   color: #1a1e21 !important;
 }
 
+.link-teal {
+  color: #20c997 !important;
+}
+.link-teal:hover, .link-teal:focus {
+  color: #4dd4ac !important;
+}
+
 .link-main {
   color: #D4A373 !important;
 }
@@ -128,6 +155,27 @@
 }
 .link-one:hover, .link-one:focus {
   color: #d6ddbe !important;
+}
+
+.link-two {
+  color: #E9EDC9 !important;
+}
+.link-two:hover, .link-two:focus {
+  color: #edf1d4 !important;
+}
+
+.link-three {
+  color: #FEFAE0 !important;
+}
+.link-three:hover, .link-three:focus {
+  color: #fefbe6 !important;
+}
+
+.link-four {
+  color: #FAEDCD !important;
+}
+.link-four:hover, .link-four:focus {
+  color: #fbf1d7 !important;
 }
 
 .ratio {
@@ -604,6 +652,11 @@
   border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
 }
 
+.border-teal {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-teal-rgb), var(--bs-border-opacity)) !important;
+}
+
 .border-main {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-main-rgb), var(--bs-border-opacity)) !important;
@@ -612,6 +665,21 @@
 .border-one {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-one-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-two {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-two-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-three {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-three-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-four {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-four-rgb), var(--bs-border-opacity)) !important;
 }
 
 .border-white {
@@ -1476,6 +1544,11 @@
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-teal {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-teal-rgb), var(--bs-text-opacity)) !important;
+}
+
 .text-main {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-main-rgb), var(--bs-text-opacity)) !important;
@@ -1484,6 +1557,21 @@
 .text-one {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-one-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-two {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-two-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-three {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-three-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-four {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-four-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-black {
@@ -1577,6 +1665,11 @@
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-teal {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-teal-rgb), var(--bs-bg-opacity)) !important;
+}
+
 .bg-main {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-main-rgb), var(--bs-bg-opacity)) !important;
@@ -1585,6 +1678,21 @@
 .bg-one {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-one-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-two {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-two-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-three {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-three-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-four {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-four-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-black {

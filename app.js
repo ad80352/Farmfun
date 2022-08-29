@@ -2,18 +2,20 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { farmSchema, reviewSchema } = require('./schema.js');
-const catchAsync = require('./utils/catchAsync');
+const session = require('express-session');
+const flash = require('connect-flash');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
-const Farm = require('./models/farm');
-const Review = require('./models/review');
 
+
+const farms = require('./routers/farms');
+const reviews = require('./routers/reviews')
 
 mongoose.connect('mongodb://localhost:27017/FarmFun', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
+
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -25,92 +27,43 @@ const app = express();
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+//加了，才能在外部讀取資料夾內的檔案
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'image')));
 
-const validateFarm = (req, res, next) => {
-    const { error } = farmSchema.validate(req.body);
-    if(error){
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next()
+const sessionConfig = {
+    secret: '這應該要是一個更好的秘密',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        //安全性用途
+        httpOnly: true,
+        //保密防諜，不加下面這兩行，使用者的快取會一直存在，加了才能在7天內未使用即移除
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+app.use(session(sessionConfig));
+app.use(flash())
 
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    console.log(error)
-    if(error){
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next()
-    }
-}
+// 快取的middleware，不用個別綁定get、post等，只要加入關鍵字（success、error）就能呼叫flash，
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+
+app.use('/farms', farms);
+app.use('/farms/:id/reviews', reviews);
+
 
 app.get('/', (req, res) => {
     res.render('home')
 })
-
-app.get('/farms', catchAsync(async (req, res) => {
-    const farms = await Farm.find({});
-    res.render('farms/index', { farms })
-}))
-
-app.get('/farms/new', (req, res) => {
-    res.render('farms/new')
-})
-
-app.post('/farms', validateFarm, catchAsync(async (req, res, next) => {
-    // if (!req.body.farm) throw new ExpressError('無效的頁面資訊', 400);
-    const farm = new Farm(req.body.farm);
-    await farm.save();
-    res.redirect(`/farms/${farm._id}`)
-}))
-
-app.get('/farms/:id', catchAsync(async (req, res) => {
-    const farm = await Farm.findById(req.params.id).populate('reviews')
-    console.log(farm)
-    res.render('farms/show', { farm })
-}))
-
-app.get('/farms/:id/edit', catchAsync(async (req, res) => {
-    const farm = await Farm.findById(req.params.id)
-    res.render('farms/edit', { farm });
-}))
-
-app.put('/farms/:id', validateFarm, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    //{ ...req.body.farm }，這串不懂
-    const farm = await Farm.findByIdAndUpdate(id, { ...req.body.farm });
-    res.redirect(`/farms/${farm._id}`);
-}))
-
-app.delete('/farms/:id', catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await Farm.findByIdAndDelete(id);
-    res.redirect('/farms');
-}))
-
-app.post('/farms/:id/reviews', validateReview, catchAsync(async (req, res) => {
-    const farm = await Farm.findById(req.params.id);
-    const review = new Review(req.body.review);
-    farm.reviews.push(review);
-    await review.save();
-    await farm.save();
-    res.redirect(`/farms/${farm._id}`);
-}))
-
-app.delete('/farms/:id/reviews/:reviewId', catchAsync(async (req, res) => {
-    const { id, reviewId } = req.params;
-    // 先找farm，再用reviewId拉出指定review
-    await Farm.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/farms/${id}`)
-}))
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('找不到頁面', 404))
