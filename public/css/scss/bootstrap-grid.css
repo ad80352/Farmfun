@@ -23,6 +23,7 @@
   --bs-two: #E9EDC9;
   --bs-three: #FEFAE0;
   --bs-four: #FAEDCD;
+  --bs-five: #d6ccc2;
   --bs-gray-dark: #343a40;
   --bs-gray-100: #f8f9fa;
   --bs-gray-200: #e9ecef;
@@ -47,6 +48,7 @@
   --bs-two: #E9EDC9;
   --bs-three: #FEFAE0;
   --bs-four: #FAEDCD;
+  --bs-five: #d6ccc2;
   --bs-primary-rgb: 13, 110, 253;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
@@ -61,6 +63,7 @@
   --bs-two-rgb: 233, 237, 201;
   --bs-three-rgb: 254, 250, 224;
   --bs-four-rgb: 250, 237, 205;
+  --bs-five-rgb: 214, 204, 194;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;

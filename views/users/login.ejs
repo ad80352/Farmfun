@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+
+<h1>登入</h1>
+<form class="mt-3" action="/login" method="POST">
+    <div class="mb-3 fs-5">
+        <label class="form-label" for="username">使用者名稱</label>
+        <input class="form-control" type="text" id="username" name="username" required>
+    </div>
+    <div class="mb-3 fs-5">
+        <label class="form-label" for="password">使用者密碼</label>
+        <input class="form-control" type="password" id="password" name="password" required>
+    </div>
+    <button class="btn btn-success opacity-85 me-2">登入</button>
+    <a class="btn btn-five" href="/farms">取消</a>
+</form>

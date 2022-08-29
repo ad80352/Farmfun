@@ -6,10 +6,14 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
 
-
-const farms = require('./routers/farms');
-const reviews = require('./routers/reviews')
+// Routes
+const userRoutes = require('./routers/user')
+const farmRoutes = require('./routers/farms');
+const reviewRoutes = require('./routers/reviews')
 
 mongoose.connect('mongodb://localhost:27017/FarmFun', {
     useNewUrlParser: true,
@@ -47,18 +51,41 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+
 app.use(session(sessionConfig));
-app.use(flash())
+app.use(flash());
+
+// 登入功能
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+// 將user儲存到session
+passport.serializeUser(User.serializeUser());
+// 從session移除user...登出? 511. 03:57
+passport.deserializeUser(User.deserializeUser());
+
+app.get('/fakeUser', async (req, res) => {
+    const user = new User({ email: 'colttt@gmail.com', username: 'colttt' });
+    const newUser = await User.register(user, 'chicken');
+    res.send(newUser);
+})
 
 // 快取的middleware，不用個別綁定get、post等，只要加入關鍵字（success、error）就能呼叫flash，
 app.use((req, res, next) => {
+    if (!['/login', '/'].includes(req.originalUrl)) {
+        req.session.returnTo = req.originalUrl;
+    }
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
 
-app.use('/farms', farms);
-app.use('/farms/:id/reviews', reviews);
+
+app.use('/', userRoutes);  //為什麼你的"/"後面什麼都不用加？ register呢？
+app.use('/farms', farmRoutes);
+app.use('/farms/:id/reviews', reviewRoutes);
 
 
 app.get('/', (req, res) => {

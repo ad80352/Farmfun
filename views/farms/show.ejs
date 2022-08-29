@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-6">
             <section class="card">
-                <img class="card-img-top rounded" src="<%= farm.image %>" alt="">
+                <img class="card-img-top" src="<%= farm.image %>" alt="">
                 <ul class="list-group">
                     <li class="list-group-item card-title fs-4">
                         <strong>
@@ -33,11 +33,11 @@
                                                 信用卡：<%= farm.creditCard===true ? '可' :'不可' %>&emsp;&emsp;
                                                     國旅卡：<%= farm.travelCard===true ? '可' :'不可' %>
                                             </li>
-                                            <li class="list-group-item ">
-                                                <a class="btn btn-success btn-sm text-white border" href="/farms/<%=farm._id%>/edit">編輯景點</a>
+                                            <li class="list-group-item opacity-85">
+                                                <a class="btn btn-success btn-sm text-white border" href="/farms/<%=farm._id%>/edit">編輯</a>
                                                 <form class="d-inline border" action="/farms/<%=farm._id%>?_method=DELETE"
                                                     method="POST">
-                                                    <button class="btn btn-danger btn-sm">刪除景點</button>
+                                                    <button class="btn btn-danger btn-sm">刪除</button>
                                                 </form>
                                             </li>
                 </ul>
@@ -55,7 +55,7 @@
                     <label class="form-label" for="body">評論</label>
                     <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
                 </div>
-                <button class="btn btn-main border text-white">送出</button>
+                <button class="btn btn-main border border-four text-white">送出</button>
             </form>
             <!--
             我想讓有評論的頁面顯示「看看其他人怎麼說」，但不知道該怎麼寫，先略過
@@ -90,5 +90,5 @@
     <!-- 所以要改用<%-  %>、而非<%=  %>，就不會跳脫html了 -->
 
     <footer>
-        <a class="btn btn-one mt-3" href="/farms">&larr;返回景點一覽</a>
+        <a class="btn btn-one mt-3 border border-two" href="/farms">&larr;返回景點一覽</a>
     </footer>

@@ -4,6 +4,7 @@ const Farm = require('../models/farm');
 const { farmSchema } = require('../schema.js');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
+const { isLoggedIn } = require('../middleware');
 
 const validateFarm = (req, res, next) => {
     const { error } = farmSchema.validate(req.body);
@@ -20,11 +21,11 @@ router.get('/', catchAsync(async (req, res) => {
     res.render('farms/index', { farms })
 }))
 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('farms/new')
 })
 
-router.post('/', validateFarm, catchAsync(async (req, res, next) => {
+router.post('/', isLoggedIn, validateFarm, catchAsync(async (req, res, next) => {
     // if (!req.body.farm) throw new ExpressError('無效的頁面資訊', 400);
     const farm = new Farm(req.body.farm);
     await farm.save();
@@ -41,7 +42,7 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('farms/show', { farm })
 }))
 
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     const farm = await Farm.findById(req.params.id);
     if (!farm) {
         req.flash('error', '無法找到該景點');
@@ -50,7 +51,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     res.render('farms/edit', { farm });
 }))
 
-router.put('/:id', validateFarm, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validateFarm, catchAsync(async (req, res) => {
     const { id } = req.params;
     //{ ...req.body.farm }，這串不懂
     const farm = await Farm.findByIdAndUpdate(id, { ...req.body.farm });
@@ -58,7 +59,7 @@ router.put('/:id', validateFarm, catchAsync(async (req, res) => {
     res.redirect(`/farms/${farm._id}`);
 }))
 
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     await Farm.findByIdAndDelete(id);
     req.flash('success', '成功刪除景點');

@@ -50,6 +50,7 @@ $one: #CCD5AE;
 $two: #E9EDC9;
 $three: #FEFAE0;
 $four: #FAEDCD;
+$five: #d6ccc2;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -72,6 +73,7 @@ $colors: (
   "two": $two,
   "three": $three,
   "four": $four,
+  "five": $five,
   "gray-dark": $gray-800) !default;
 // scss-docs-end colors-map
 
@@ -310,6 +312,7 @@ $one: $one;
 $two: $two;
 $three: $three;
 $four: $four;
+$five: $five;
 
 // scss-docs-end theme-color-variables
 
@@ -329,6 +332,7 @@ $theme-colors: (
   "two": $two,
   "three": $three,
   "four": $four,
+  "five": $five,
   ) !default;
 // scss-docs-end theme-colors-map
 

@@ -10,6 +10,15 @@
           <a class="nav-link fs-5" href="/farms"><strong>農遊景點</strong></a>
           <a class="nav-link fs-5" href="/farms/new"><strong>新增景點</strong></a>
         </div>
+        <div class="navbar-nav ms-auto">
+          <% if (!currentUser) { %> 
+          <a class="nav-link fs-5" href="/login"><strong>登入</strong></a>
+          <a class="nav-link fs-5" href="/register"><strong>註冊</strong></a>
+          <% } else { %>
+           <!-- 嗯......要怎麼顯示當前登入的使用者呢？ 517. 04:28-->
+          <a class="nav-link fs-5" href="/logout"><strong>登出</strong></a>
+          <% } %> 
+        </div>
       </div>
     </div>
   </nav>
