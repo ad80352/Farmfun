@@ -5,34 +5,92 @@
             <section class="card">
                 <img class="card-img-top rounded" src="<%= farm.image %>" alt="">
                 <ul class="list-group">
-                    <li class="list-group-item card-title fs-4"><strong><%= farm.title %></strong></li>
-                    <li class="list-group-item ">地址：<%= farm.address %></li>
-                    <li class="list-group-item ">網站：<a href="<%= farm.website %>" target="_blank"><%= farm.website %></a></li>
-                    <li class="list-group-item ">電話：<%= farm.tel %></li>
-                    <li class="list-group-item ">開放時間：<%= farm.openHours %></li>
-                    <li class="list-group-item ">  
-                        信用卡：<%= farm.creditCard === true ? '可':'不可' %>&emsp;&emsp; 
-                        國旅卡：<%= farm.travelCard === true ? '可':'不可' %>
+                    <li class="list-group-item card-title fs-4">
+                        <strong>
+                            <%= farm.title %>
+                        </strong>
                     </li>
-                    <li class="list-group-item ">  
-                        <a class="btn btn-info" href="/farms/<%=farm._id%>/edit">編輯景點</a>
-                        <form class="btn btn-danger" action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
-                            <span>刪除景點</span>
-                        </form>
+                    <li class="list-group-item">地址：<%= farm.address %>
                     </li>
+
+                    <% if (farm.website) { %>
+                        <li class="list-group-item ">網站：<a href="<%= farm.website %>" target="_blank">
+                                <%= farm.website %>
+                            </a></li>
+                        <% } %>
+
+                            <% if (farm.tel) { %>
+                                <li class="list-group-item ">電話：<%= farm.tel %>
+                                </li>
+                                <% } %>
+
+                                    <% if (farm.openHours) { %>
+                                        <li class="list-group-item ">開放時間：<%= farm.openHours %>
+                                        </li>
+                                        <% } %>
+
+
+                                            <li class="list-group-item ">
+                                                信用卡：<%= farm.creditCard===true ? '可' :'不可' %>&emsp;&emsp;
+                                                    國旅卡：<%= farm.travelCard===true ? '可' :'不可' %>
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <a class="btn btn-info btn-sm" href="/farms/<%=farm._id%>/edit">編輯景點</a>
+                                                <form class="d-inline" action="/farms/<%=farm._id%>?_method=DELETE"
+                                                    method="POST">
+                                                    <button class="btn btn-danger btn-sm">刪除景點</button>
+                                                </form>
+                                            </li>
                 </ul>
             </section>
         </div>
+        <div class="col-6">
+            <form action="/farms/<%=farm._id%>/reviews" class="mt-3" method="POST">
+                <h3>留下評論</h3>
+                <div class="mb-3">
+                    <label class="form-label" for="rating">評分</label>
+                    <input class="form-range" type="range" id="rating" name="review[rating]" min="1" max="5">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="body">評論</label>
+                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                </div>
+                <button class="btn btn-success">送出</button>
+            </form>
+            <!--
+            我想讓有評論的頁面顯示「看看其他人怎麼說」，但不知道該怎麼寫，先略過
+            <% console.log(farm.reviews._id) %> 
+            <% if (farm.reviews._id) { %>
+                <h4 class="mt-3">看看其他人怎麼說</h4>
+            <% } %>  
+            -->
+                <% for (let review of farm.reviews) { %> 
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">評分：<%= review.rating %>
+                            </h5>
+                            <p class="card-text">評論：<%= review.body %>
+                            </p>
+                            <form action="/farms/<%=farm._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">刪除</button>
+                            </form>
+                        </div>
+                    </div>
+                <% } %>
+        </div>
     </div>
-    <p class="mt-3"><%- farm.description %></p>
-    
-    
+    <hr>
+    <p class="mt-3">
+        <%- farm.description %>
+    </p>
+
+
 
     <!-- 引入後 <br> 變成字串內容而非html標籤  -->
     <!-- 所以要改用<%-  %>，而非<%=  %>，就不會跳脫html了 -->
 
-    
+
 
     <footer>
-        <a class="btn btn-success" href="/farms">返回所有景點</a>
+        <a class="btn btn-secondary" href="/farms">返回所有景點</a>
     </footer>
