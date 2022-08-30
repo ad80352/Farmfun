@@ -2,55 +2,22 @@ const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
 const User = require('../models/user');
+const users = require('../controllers/users');
 const passport = require('passport');
 
-router.get('/register', (req, res) => {
-    res.render('users/register');
-})
+router.route('/register')
+    .get(users.renderRegister)
+    .post(catchAsync(users.register))
 
-router.post('/register', catchAsync(async (req, res) => {
-    try {
-        const { email, username, password } = req.body;
-        const user = new User({ email, username });
-        const registeredUser = await User.register(user, password);
-        // req.login()，註冊成功後無須再登入
-        req.login(registeredUser, err => {
-            if (err) return next(err);
-            req.flash('success', '歡迎加入！');
-            res.redirect('/farms');
-        })
-    } catch (e) {
-        // if(e.message === "Password or username is incorrect") {
-        //    req.flash('error', "帳號或密碼錯誤");
-        //    res.redirect('/register')
-        // } else {}               
-        // 這不管用，真麻煩
-        req.flash('error', e.message) // 但e.message印出來的是英文......唉
-        res.redirect('/register')
-    }
-}))
+router.route('/login')
+    .get(users.renderLogin)
+    .post(passport.authenticate('local', {
+        failureFlash: true,
+        failureRedirect: '/login',
+        keepSessionInfo: true
+    }), users.login)
 
-router.get('/login', (req, res) => {
-    res.render('users/login')
-})
 
-router.post('/login', passport.authenticate('local', {
-    failureFlash: true,
-    failureRedirect: '/login',
-    keepSessionInfo: true
-}), (req, res) => {
-    req.flash('success', '歡迎回來！');
-    const redirectUrl = req.session.returnTo || '/farms';
-    delete req.session.returnTo;
-    res.redirect(redirectUrl);
-});
-
-router.get('/logout', (req, res, next) => {
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        req.flash('success', "期待您的再臨");
-        res.redirect('/farms');
-    });
-});
+router.get('/logout', users.logout);
 
 module.exports = router;
