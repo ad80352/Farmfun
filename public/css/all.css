@@ -11530,22 +11530,15 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body {
-  background-color: #FEFAE0;
-  opacity: 0.9;
-}
-
-#navbar {
-  background-color: #D4A373;
-}
-
-#footer {
-  background-color: #D4A373;
-}
-
 #logo {
   width: 50px;
   height: 50px;
+}
+
+#img {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 3px;
 }
 
 .opacity-85 {

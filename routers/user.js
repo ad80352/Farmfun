@@ -20,6 +20,11 @@ router.post('/register', catchAsync(async (req, res) => {
             res.redirect('/farms');
         })
     } catch (e) {
+        // if(e.message === "Password or username is incorrect") {
+        //    req.flash('error', "帳號或密碼錯誤");
+        //    res.redirect('/register')
+        // } else {}               
+        // 這不管用，真麻煩
         req.flash('error', e.message) // 但e.message印出來的是英文......唉
         res.redirect('/register')
     }
@@ -43,7 +48,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res, next) => {
     req.logout(function (err) {
         if (err) { return next(err); }
-        req.flash('success', "再見！");
+        req.flash('success', "期待您的再臨");
         res.redirect('/farms');
     });
 });

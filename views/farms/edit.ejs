@@ -2,7 +2,7 @@
 
     <div class="row">
         <h1 class="text-center mb-3">編輯景點</h1>
-        <div class="col-6 offset-3">
+        <div class="col-6 offset-3 rounded bg-five bg-opacity-25 p-3">
             <form action="/farms/<%=farm._id%>?_method=PUT" method="POST">
                 <div class="mb-3 fs-5">
                     <label class="form-label" for="name">名稱</label>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="mb-3 fs-5">
                     <label class="form-label" for="description">介紹</label>
-                    <textarea class="form-control" type="text" id="description" name="farm[description]" rows="10" required><%= farm.description %></textarea>
+                    <textarea class="form-control" type="text" id="description" name="farm[description]" rows="8" required><%= farm.description %></textarea>
                 </div>
 
                 <!-- 編輯時radio的預設值要怎麼顯示which selected? -->
@@ -62,7 +62,7 @@
                     </label>
                 </div>
                 <br>
-                <button class="btn btn-success mt-3 opacity-85 me-2">確認更新</button>
+                <button class="btn btn-success mt-3 opacity-75 me-2">確認更新</button>
                 <a href="/farms/<%= farm._id %>" class="btn btn-five mt-3">取消</a>
             </form>
         </div>

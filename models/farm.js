@@ -13,7 +13,10 @@ const FarmSchema = new Schema({
     image: String,
     creditCard: Boolean,
     travelCard: Boolean,
-
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews :[
         {
             type: Schema.Types.ObjectId,

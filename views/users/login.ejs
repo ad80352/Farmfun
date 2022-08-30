@@ -1,15 +1,22 @@
 <% layout('layouts/boilerplate') %>
 
-<h1>登入</h1>
-<form class="mt-3" action="/login" method="POST">
-    <div class="mb-3 fs-5">
-        <label class="form-label" for="username">使用者名稱</label>
-        <input class="form-control" type="text" id="username" name="username" required>
+    <div class="row">
+        <div class="col-4 offset-4 rounded bg-five bg-opacity-25 p-3">
+            <h1 class="text-center">登入</h1>
+            <hr>
+            <form class="py-3" action="/login" method="POST">
+                <div class="mb-4 fs-5">
+                    <label class="form-label" for="username">使用者名稱</label>
+                    <input class="form-control" type="text" id="username" name="username" required>
+                </div>
+                <div class="mb-5 fs-5">
+                    <label class="form-label" for="password">使用者密碼</label>
+                    <input class="form-control" type="password" id="password" name="password" required>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success opacity-85 me-2">登入</button>
+                    <a class="btn btn-five" href="/farms">取消</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3 fs-5">
-        <label class="form-label" for="password">使用者密碼</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-    </div>
-    <button class="btn btn-success opacity-85 me-2">登入</button>
-    <a class="btn btn-five" href="/farms">取消</a>
-</form>

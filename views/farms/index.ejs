@@ -1,14 +1,14 @@
 <% layout('layouts/boilerplate') %>
 
-    <h1>景點一覽</h1>
-    <div class="d-flex flex-wrap d-grid gap-5">
+    <h1 class="text-center mb-5">景點一覽</h1>
+    <div class="d-flex flex-wrap justify-content-center d-grid gap-4">
     <% for (let farm of farms) { %>
         <div class="card text-bg-light text-center shadow-sm" style="width: 18rem;">
-            <img src="<%= farm.image %>" class="card-img-top rounded border border-five" alt="...">
+          <div class="card-img-top rounded border border-five" style="height: 12rem; background-image: url(<%= farm.image %>); background-size: cover"></div>  
             <div class="card-body">
               <h5 class="card-title"><strong><%= farm.title %></strong></h5>
               <p class="card-text text-muted"><%= farm.location %></p>
-              <a href="/farms/<%= farm._id %> " class="btn btn-main border border-four shadow-sm">查看詳情</a>
+              <a href="/farms/<%= farm._id %>" class="btn btn-main border border-four shadow-sm">查看詳情</a>
             </div>
           </div>
         <% } %>

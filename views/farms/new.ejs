@@ -1,8 +1,9 @@
 <% layout('layouts/boilerplate') %>
 
+
     <div class="row">
         <h1 class="text-center mb-3">新增景點</h1>
-        <div class="col-6 offset-3">
+        <div class="col-6 offset-3 rounded bg-five bg-opacity-25 p-3">
             <form action="/farms" method="POST">
                 <div class="mb-3 fs-5">
                     <label class="form-label" for="name">名稱</label>
@@ -31,17 +32,20 @@
 
                 <div class="mb-3 fs-5">
                     <label class="form-label" for="description">介紹</label>
-                    <textarea class="form-control" type="text" id="description" name="farm[description]" required></textarea>
+                    <textarea class="form-control" type="text" id="description" name="farm[description]" rows="8"
+                        required></textarea>
                 </div>
                 <span class="fs-5 me-5">可否使用「信用卡」？</span>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="farm[creditCard]" id="creditcardTrue" value="true">
+                    <input class="form-check-input" type="radio" name="farm[creditCard]" id="creditcardTrue"
+                        value="true">
                     <label class="form-check-label" for="creditcardTrue">
                         可
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="farm[creditCard]" id="creditcardFalse" value="false" checked>
+                    <input class="form-check-input" type="radio" name="farm[creditCard]" id="creditcardFalse"
+                        value="false" checked>
                     <label class="form-check-label" for="creditcardFalse">
                         不可
                     </label>
@@ -55,7 +59,8 @@
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="farm[travelCard]" id="travelFalse" value="false" checked>
+                    <input class="form-check-input" type="radio" name="farm[travelCard]" id="travelFalse" value="false"
+                        checked>
                     <label class="form-check-label" for="travelFalse">
                         不可
                     </label>

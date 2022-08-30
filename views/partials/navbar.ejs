@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg sticky-top" id="navbar">
+<nav class="navbar navbar-expand-lg sticky-top bg-main py-1"  id="navbar">
     <div class="container-fluid container">
-      <a class="navbar-brand" href="/"><img src="/logo.png" id="logo" alt=""></a>
+      <a class="navbar-brand" href="/"><img src="/logo.png" id="logo" alt="農委會logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,8 +14,9 @@
           <% if (!currentUser) { %> 
           <a class="nav-link fs-5" href="/login"><strong>登入</strong></a>
           <a class="nav-link fs-5" href="/register"><strong>註冊</strong></a>
-          <% } else { %>
-           <!-- 嗯......要怎麼顯示當前登入的使用者呢？ 517. 04:28-->
+          <% } else { %>  
+           <!-- 嗯......要怎麼顯示當前登入的使用者呢？ 517. 04:28--> 
+          <a class="nav-link fs-5 disabled " href="/logout"><strong>您已登入</strong></a>
           <a class="nav-link fs-5" href="/logout"><strong>登出</strong></a>
           <% } %> 
         </div>
