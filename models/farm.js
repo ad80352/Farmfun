@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Review = require('./review')
 const Schema = mongoose.Schema;
 
+const opts = { toJSON: { virtuals : true } };
+
 const FarmSchema = new Schema({
     title: String,
     address: String,
@@ -34,6 +36,10 @@ const FarmSchema = new Schema({
             ref: 'Review'
         }
     ]
+}, opts)
+
+FarmSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<a href="/farms/${this._id}" class="text-decoration-none text-dark fw-bold fs-5" title="點擊前往" target="_blank">${this.title}</a>`
 })
 
 FarmSchema.post('findOneAndDelete', async function (doc) {

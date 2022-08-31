@@ -16,7 +16,7 @@ new mapboxgl.Marker()
     .setPopup(
         new mapboxgl.Popup({offset: 20})
         .setHTML(
-            `<h6>${farm.title}</h6>`
+            `<h5 class="fw-bold">${farm.title}</h5>`
         )
     )
     .addTo(map);
