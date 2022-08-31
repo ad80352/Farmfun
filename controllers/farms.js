@@ -1,4 +1,7 @@
 const Farm = require('../models/farm');
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (req, res) => {
     const farms = await Farm.find({});
@@ -10,10 +13,15 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createFarm = async (req, res, next) => {
-    // if (!req.body.farm) throw new ExpressError('無效的頁面資訊', 400);
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.farm.address,
+        limit: 1
+    }).send()
     const farm = new Farm(req.body.farm);
+    farm.geometry = geoData.body.features[0].geometry;
     farm.author = req.user._id;
     await farm.save();
+    console.log(farm)
     req.flash('success', '新增景點成功！');
     res.redirect(`/farms/${farm._id}`)
 }

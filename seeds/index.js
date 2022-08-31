@@ -24,6 +24,10 @@ const seedDB = async () => {
             title: `${farms[i].Name}`,
             address: `${farms[i].Address}`,
             location: `${farms[i].City}, ${farms[i].Town}`,
+            geometry: {
+                type: 'Point',
+                coordinates: [`${farms[i].Longitude}`, `${farms[i].Latitude}`]
+              },
             description: `${farms[i].HostWords}`,
             image: `${farms[i].Photo}`,
             website: `${farms[i].Url}`,

@@ -4,9 +4,9 @@ module.exports.farmSchema = Joi.object({
     farm: Joi.object({
         title: Joi.string().required(),
         address: Joi.string().required(),
-        website: Joi.string(),
-        tel: Joi.string(),
-        openHours: Joi.string(),
+        website: Joi.string().empty(''),
+        tel: Joi.string().empty(''),
+        openHours: Joi.string().empty(''),
         description: Joi.string().required(),
         image: Joi.string().required(),
         creditCard: Joi.boolean(),

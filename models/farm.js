@@ -6,6 +6,17 @@ const FarmSchema = new Schema({
     title: String,
     address: String,
     location: String,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     website: String,
     description: String,
     tel: String,

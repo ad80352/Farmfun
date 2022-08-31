@@ -4,12 +4,21 @@
     <div class="row">
         <div class="col-6">
             <section class="card">
-                <img class="card-img-top" src="<%= farm.image %>" alt="">
+                <img class="card-img-top"
+                    style="background-size: cover;height: 24rem; background-image: url(<%= farm.image %>)" alt="">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-four fs-4">
+                    <li class="list-group-item list-group-item-four fs-4 d-flex justify-content-between">
                         <strong>
                             <%= farm.title %>
                         </strong>
+                        <% if (currentUser && farm.author.equals(currentUser._id)) { %>
+                            <div>
+                                <a class="btn btn-success opacity-75 btn-sm" href="/farms/<%=farm._id%>/edit">編輯</a>
+                                <form class="d-inline ms-2" action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-danger opacity-75 btn-sm">刪除</button>
+                                </form>
+                            </div>
+                            <% } %>
                     </li>
                     <li class="list-group-item list-group-item-four">
                         <img id="img" src="/location.png" alt="">&nbsp;
@@ -44,26 +53,17 @@
                                                 信用卡：<%= farm.creditCard===true ? '可' :'不可' %>&emsp;&emsp;
                                                     國旅卡：<%= farm.travelCard===true ? '可' :'不可' %>
                                             </li>
-                                            <% if (currentUser && farm.author.equals(currentUser._id)) { %>
-                                                <li class="list-group-item list-group-item-four opacity-85">
-                                                    <a class="btn btn-success btn-sm text-white border"
-                                                        href="/farms/<%=farm._id%>/edit">編輯</a>
-                                                    <form class="d-inline border"
-                                                        action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
-                                                        <button class="btn btn-danger btn-sm">刪除</button>
-                                                    </form>
-                                                </li>
-                                                <% } %>
-                                                    <li class="list-group-item list-group-item-four">
-                                                        管理者：<%= farm.author.username %>
-                                                    </li>
+                                            <li class="list-group-item list-group-item-four">
+                                                管理者：<%= farm.author.username %>
+                                            </li>
                 </ul>
             </section>
         </div>
-        <div class="col-6">
+        <div class="col-6 d-flex flex-column <%= (currentUser)? 'justify-content-between':'justify-content-evenly' %>">
+            <div id='map' class="rounded border border-five mb-2"></div>
             <% if (currentUser) { %>
                 <form action="/farms/<%=farm._id%>/reviews" class="rounded bg-five bg-opacity-25 p-3" method="POST">
-                    <h3 class="text-center"><strong>留下評論</strong></h3>
+                    <h3 class="text-secondary text-center"><strong>留下評論</strong></h3>
                     <hr>
                     <fieldset class="starability-basic">
                         <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
@@ -80,25 +80,24 @@
                         <label for="first-rate5" title="Amazing">5 stars</label>
                     </fieldset>
                     <div class="mb-3">
-                        <label class="form-label" for="body">評論</label>
+                        <label class="form-label text-secondary" for="body">評論</label>
                         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
                             required></textarea>
                     </div>
-                    <button class="btn btn-main border border-four text-white">送出</button>
+                    <button class="btn btn-success opacity-75">送出</button>
                 </form>
-                <% } %>
-                    <!--
-            我想讓有評論的頁面顯示「看看其他人怎麼說」，但不知道該怎麼寫，先略過
-            <% if (farm.reviews._id) { %>
-                <h4 class="mt-3">看看其他人怎麼說</h4>
-            <% } %>  
-            -->
+                <% } else { %>
+                    <div class="rounded bg-five bg-opacity-25 p-3 text-center " id="login">
+                        <h3 class="mt-4 text-secondary fw-bold mb-3">若欲留言，請先登入</h3>
+                        <a href="/login" class="btn btn-success opacity-75 fw-bold mb-4">登入</a>
+                    </div>
+                    <% } %>
         </div>
 
     </div>
 
     <div class="rounded bg-two bg-opacity-75 p-3 mt-3 shadow-sm">
-        <h3 class="py-2">景點介紹</h3>
+        <h3 class="text-secondary py-2">景點介紹</h3>
         <hr>
         <p class="py-2">
             <%- farm.description %>
@@ -107,30 +106,36 @@
 
     <div class="d-flex flex-wrap d-grid gap-3">
         <% for (let review of farm.reviews) { %>
-            <div class="card mt-3 bg-light style="width: 18rem;">
+            <div class="card mt-3 bg-light bg-opacity-25">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">
-                        <%= review.author.username %>
-                    </h5>
-                    <p class="starability-result" data-rating="<%= review.rating %>">
-                    </p>
-                    <p class="card-text">
+                    <div class="d-flex justify-content-between">
+                        <p class="starability-result" data-rating="<%= review.rating %>">
+                        </p>
+                        <% if (currentUser && review.author.equals(currentUser._id)) { %>
+                            <form action="/farms/<%=farm._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger opacity-75 ms-2">刪除</button>
+                            </form>
+                            <% } %>
+                    </div>
+                    <span class="card-title fw-bold">
+                        <%= review.author.username %>：
+                    </span>
+                    <span class="card-text">
                         <%= review.body %>
-                    </p>
+                    </span>
 
-                    <% if (currentUser && review.author.equals(currentUser._id)) { %>
-                        <form action="/farms/<%=farm._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                            <button class="btn btn-sm btn-danger opacity-85">刪除</button>
-                        </form>
-                        <% } %>
+
                 </div>
             </div>
-            <% } %>
+            <% } %>  
     </div>
-
-    <!-- 引入後 <br> 變成字串內容而非html標籤  -->
-    <!-- 所以要改用<%-  %>、而非<%=  %>，就不會跳脫html了 -->
 
     <footer>
         <a class="btn btn-outline-secondary mt-3" href="/farms">&larr;返回</a>
     </footer>
+
+<script>
+    const farm = <%- JSON.stringify(farm) %>
+</script>
+
+<script src="/js/showMap.js"></script>

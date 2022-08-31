@@ -11541,6 +11541,15 @@ textarea.form-control-lg {
   margin-bottom: 3px;
 }
 
+#map {
+  width: auto;
+  height: 320px;
+}
+
+#check a:hover, #login a:hover {
+  font-size: 17px;
+}
+
 .opacity-85 {
   opacity: 0.85;
 }/*# sourceMappingURL=all.css.map */
