@@ -28,7 +28,7 @@ const seedDB = async () => {
         // const random84 = Math.floor(Math.random() * 84); 可以想一下要怎麼隨機取出不重複的50個值
 
         const farm = new Farm({    
-            author: '63133336e55b6a90816665a8',  
+            author: '63139e573d6666fb3f80ae83',  
             title: `${farms[i].Name}`,
             address: `${farms[i].Address}`,
             location: `${farms[i].City}, ${farms[i].Town}`,
