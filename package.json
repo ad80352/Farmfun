@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.13.4",
     "bootstrap": "^5.2.0",
