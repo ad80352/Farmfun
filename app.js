@@ -15,11 +15,16 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
 // Routes
-const userRoutes = require('./routers/user')
+const userRoutes = require('./routers/user');
 const farmRoutes = require('./routers/farms');
-const reviewRoutes = require('./routers/reviews')
+const reviewRoutes = require('./routers/reviews');
 
-mongoose.connect('mongodb://localhost:27017/FarmFun', {
+const MongoStore = require('connect-mongo');
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/FarmFun';
+
+
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -43,8 +48,23 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'image')));
 
+const secret = process.env.SECRET || 'thisshouldbeabetterscrect';
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret
+    }
+});
+
+store.on('error', function (e) {
+    console.log('SESSION STORE ERROR', e)
+})
+
 const sessionConfig = {
-    secret: '這應該要是一個更好的秘密',
+    store,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {

@@ -1,0 +1,18 @@
+<% layout('layouts/boilerplate') %>
+
+<link rel="stylesheet" href="/css/clusterMap.css">
+
+<h1 class="text-center mb-4 fw-bold text-secondary">景點分布</h1>
+<!-- 因為要限制地圖的長寬，不只是單純置中，因此選用格線系統 -->
+<div class="row">
+    <div class="col-md-6 offset-md-3"> 
+        <div id="map" class="rounded" style="height: 90vh;"></div>
+    </div>
+</div>
+
+
+<script>
+    const farms = { features: <%- JSON.stringify(farms) %>}
+</script>
+
+  <script src="/js/clusterMap.js"></script>

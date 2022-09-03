@@ -8,7 +8,6 @@ const map = new mapboxgl.Map({
     zoom: 7.1
 });
 
-console.log(farms)
 
 map.on('load', () => {
     // Add a new source from our GeoJSON data and
@@ -38,20 +37,20 @@ map.on('load', () => {
             'circle-color': [
                 'step',
                 ['get', 'point_count'],
-                '#51bbd6', //小於5的顏色
+                '#4cc9f0', //小於5的顏色
                 5, 
-                '#f1f075', //小於10的顏色
+                '#fff3b0', //小於10的顏色
                 10, 
-                '#f28cb1' //大於10的顏色
+                '#f28482' //大於10的顏色
             ],
             'circle-radius': [
                 'step',
                 ['get', 'point_count'],
                 18, //小於5的大小
                 5,
-                23, //小於10的大小
+                24, //小於10的大小
                 10,
-                28 //大於10的大小
+                29 //大於10的大小
             ]
         }
     });
@@ -74,7 +73,7 @@ map.on('load', () => {
         source: 'farms',
         filter: ['!', ['has', 'point_count']],
         paint: {
-            'circle-color': '#11b4da',
+            'circle-color': '#2ec4b6',
             'circle-radius': 8,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff'

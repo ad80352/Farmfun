@@ -1,11 +1,14 @@
 <% layout('layouts/boilerplate') %>
     <link rel="stylesheet" href="/css/star.css">
+    <link rel="stylesheet" href="/css/showMap.css">
+
+    <a class="btn btn-outline-secondary d-md-none mb-3" href="javascript:history.go(-1)">&larr;返回</a>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <section class="card">
                 <img class="card-img-top"
-                    style="background-size: cover;height: 24rem; background-image: url(<%= farm.image %>)" alt="">
+                    style="background-size: cover; background-position: center ;height: 24rem; background-image: url('<%= farm.image %>')" alt="">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item list-group-item-four fs-4 d-flex justify-content-between">
                         <strong>
@@ -59,8 +62,8 @@
                 </ul>
             </section>
         </div>
-        <div class="col-6 d-flex flex-column <%= (currentUser)? 'justify-content-between':'justify-content-evenly' %>">
-            <div id='map' class="rounded border border-five mb-2"></div>
+        <div class="col-md-6 d-flex flex-column <%= (currentUser)? 'justify-content-between':'' %>">
+            <div id='map' class="rounded border border-five mb-2 show"></div>
             <% if (currentUser) { %>
                 <form action="/farms/<%=farm._id%>/reviews" class="rounded bg-five bg-opacity-25 p-3" method="POST">
                     <h3 class="text-secondary text-center"><strong>留下評論</strong></h3>
@@ -79,31 +82,32 @@
                         <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                         <label for="first-rate5" title="Amazing">5 stars</label>
                     </fieldset>
-                    <div class="mb-3">
-                        <label class="form-label text-secondary" for="body">評論</label>
+                    <div>
                         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
-                            required></textarea>
+                        required placeholder="輸入評論......"></textarea>
+                        <label class="form-label text-secondary" for="body"></label>
                     </div>
                     <button class="btn btn-success opacity-75">送出</button>
                 </form>
                 <% } else { %>
-                    <div class="rounded bg-five bg-opacity-25 p-3 text-center " id="login">
+                    <div class="rounded bg-five bg-opacity-25 p-3 text-center my-auto" id="login">
                         <h3 class="mt-4 text-secondary fw-bold mb-3">若欲留言，請先登入</h3>
                         <a href="/login" class="btn btn-success opacity-75 fw-bold mb-4">登入</a>
                     </div>
                     <% } %>
         </div>
-
     </div>
 
-    <div class="rounded bg-two bg-opacity-75 p-3 mt-3 shadow-sm">
-        <h3 class="text-secondary py-2">景點介紹</h3>
-        <hr>
-        <p class="py-2">
-            <%- farm.description %>
-        </p>
-    </div>
-
+    <!-- 景點介紹 -->
+        <div class="rounded bg-two bg-opacity-75 p-3 mt-3 shadow-sm">
+            <h3 class="py-2">景點介紹</h3>
+            <hr>
+            <p class="py-2">
+                <%- farm.description %>
+            </p>
+        </div>
+        
+    <!-- 評論 -->
     <div class="d-flex flex-wrap d-grid gap-3">
         <% for (let review of farm.reviews) { %>
             <div class="card mt-3 bg-light bg-opacity-25">
@@ -123,16 +127,15 @@
                     <span class="card-text">
                         <%= review.body %>
                     </span>
-
-
                 </div>
             </div>
             <% } %>  
     </div>
 
     <footer>
-        <a class="btn btn-outline-secondary mt-3" href="/farms">&larr;返回</a>
+        <a class="btn btn-outline-secondary mt-3" href="javascript:history.go(-1)">&larr;返回</a>
     </footer>
+
 
 <script>
     const farm = <%- JSON.stringify(farm) %>

@@ -1,3 +1,8 @@
+// 檢視佈局
+// * {
+//     outline: 1px solid gray;
+// }
+
 // navbar的農委會logo
 #logo {
     width: 50px;
@@ -11,25 +16,46 @@
     margin-bottom: 3px;
 }
 
-//幫show地圖撐長寬
+// 幫show地圖撐長寬
+// 它在手機版居然會消失...為什麼啊
 #map {
-    width: auto;
-    height: 320px;
+    width: 100%;
+    height: 60%;
 }
 
-// index的按鈕點擊效果
-#check, #login{
-    a:hover{
-        font-size: 17px;
+// 按鈕hover特效
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+// index頁面設定
+#index {
+    .btn {
+        letter-spacing: 2px;
+    }
+
+    .card{
+        width: 22%;
+        &:hover{
+            transform: translateY(-4px);
+        }
+    }
+
+    .btn:hover {
+        transform: none;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
     }
 }
 
+@media (max-width: 768px) {
 
-
-.opacity-85{
-    opacity: .85;
+    #index {
+        .card{
+            width: 90%;
+        }
+    }
 }
 
-// * {
-//     outline: 1px solid gray;
-// }
+.opacity-85 {
+    opacity: .85;
+}

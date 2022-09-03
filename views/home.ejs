@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FarmFun</title>
+    <title>來去農村住一晚</title>
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/home.css">
 </head>
-<body>
-    <h1>HOME!</h1>
+
+<body class="d-flex flex-column">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-25">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link active" href="/">首頁</a>
+                        <a class="nav-link" href="/farms">農遊景點</a>
+                        <a class="nav-link" href="/farms/clusterMap">農遊地圖</a>
+                        <div class="navbar-nav me-2">
+                            <% if (!currentUser) { %>
+                                <a class="nav-link" href="/login">登入</a>
+                                <a class="nav-link" href="/register">註冊</a>
+                                <% } else { %>
+                                    <!-- 嗯......要怎麼顯示當前登入的使用者呢？ 517. 04:28-->
+                                    <a class="nav-link" href="/logout">登出</a>
+                                    <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto mt-5 my-md-auto">
+        <article id="slogan" class="text-center">
+            <h1 id="slogan-primary" class="mb-3 fw-bold">來，去農村住一晚</h1>
+            <h2 id="slogan-sub" class="mb-3 mb-md-5 fw-bold">在生活的夾縫，好好呼吸</h2>
+            <a href="/farms" class="btn">開始旅程</a>
+        </article>
+    </main>
+
+    <footer class="footer bg-secondary py-2 bg-opacity-25 mt-auto" id="footer">
+        <div class="container">
+            <span class="fw-bold">&copy; 來去農村住一晚 2022</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

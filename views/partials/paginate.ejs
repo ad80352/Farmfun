@@ -1,0 +1,25 @@
+<div class="my-4 my-md-5">
+    <nav aria-label="Farm Paginate">
+        <ul class="pagination justify-content-center">
+            <% if (currentPage - 1 ) { %>
+                <li class="page-item">
+                    <a href="/farms?page=<%= farms.page - 1 %>" class="page-link text-success">&laquo;</a>
+                </li>
+            <% } %>
+            <% if (farms.totalPages > 1 && farms.docs.length) { %>
+                <% for (let i = startPage; i <= endPage; i++) { %>
+                    <li class="page-item">
+                        <a href="/farms?page=<%= i %> " class="page-link text-success <%= i === farms.page ? 'text-white active bg-success bg-opacity-75 border border-five' : '' %>">
+                            <%= i %>
+                        </a>
+                    </li> 
+                <% } %>
+            <% } %> 
+            <% if ((currentPage + 1) <= totalPages) { %>
+                <li class="page-item">
+                    <a href="/farms?page=<%= farms.page + 1 %> " class="page-link text-success">&raquo;</a>
+                </li>   
+            <% } %>       
+        </ul>
+    </nav>
+</div>

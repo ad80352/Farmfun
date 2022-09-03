@@ -11542,14 +11542,33 @@ textarea.form-control-lg {
 }
 
 #map {
-  width: auto;
-  height: 320px;
+  width: 100%;
+  height: 60%;
 }
 
-#check a:hover, #login a:hover {
-  font-size: 17px;
+.btn:hover {
+  transform: translateY(-1px);
 }
 
+#index .btn {
+  letter-spacing: 2px;
+}
+#index .card {
+  width: 22%;
+}
+#index .card:hover {
+  transform: translateY(-4px);
+}
+#index .btn:hover {
+  transform: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  #index .card {
+    width: 90%;
+  }
+}
 .opacity-85 {
   opacity: 0.85;
 }/*# sourceMappingURL=all.css.map */

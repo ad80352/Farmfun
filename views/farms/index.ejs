@@ -1,27 +1,26 @@
 <% layout('layouts/boilerplate') %>
 
-  <div id="map" style="width: 50%; height: 800px;"></div>
-  <h1 class="text-center mb-5">景點一覽</h1>
-  <div class="d-flex flex-wrap d-grid gap-5">
-    <% for (let farm of farms) { %>
-      <div class="card text-bg-light text-center shadow" style="width: 18rem;">
-        <div class="card-img-top rounded border border-five"
-          style="background-size: cover; height: 12rem; background-image: url(<%= farm.image %>)"></div>
-        <div class="card-body" id="check">
-          <h5 class="card-title"><strong>
-              <%= farm.title %>
-            </strong></h5>
-          <p class="card-text text-muted">
-            <%= farm.location %>
-          </p>
-          <a href="/farms/<%= farm._id %>" class="btn btn-success opacity-75 fw-bold shadow-sm">查看詳情</a>
+  <h1 class="text-center mb-2 mb-md-4 fw-bold text-secondary">景點一覽</h1>
+
+  <%- include('../partials/paginate') %>
+  <div class="d-flex flex-wrap justify-content-evenly d-grid gap-md-5 gap-3" id="index">
+      <% for (let farm of farms.docs) { %>
+        <div class="card text-bg-light text-center shadow">
+          <a href="/farms/<%= farm._id %>" class="text-decoration-none text-dark d-block">
+            <div class="card-img-top rounded border border-five"
+              style="background-size: cover; height: 12rem; background-image: url('<%= farm.image %>'); background-position: center;">
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between" id="check">
+              <h5 class="card-title mb-2"><strong>
+                  <%= farm.title %>
+                </strong></h5>
+              <p class="card-text text-muted mb-2">
+                <%= farm.location %>
+              </p>
+              <a href="/farms/<%= farm._id %>" class="btn btn-success opacity-75 fw-bold shadow-sm d-block">查看詳情</a>
+            </div>
+          </a>
         </div>
-      </div>
       <% } %>
-  </div>
-
-  <script>
-    const farms = { features: <%- JSON.stringify(farms) %>}
-  </script>
-
-  <script src="/js/clusterMap.js"></script>
+    </div>
+    <%- include('../partials/paginate') %>

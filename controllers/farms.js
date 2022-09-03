@@ -3,9 +3,55 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
-module.exports.index = async (req, res) => {
+// 原始index
+// module.exports.index = async (req, res) => {
+//     const farms = await Farm.find({});
+//     res.render('farms/index', { farms })
+// }
+
+// 新增分頁檢視的index
+module.exports.index = (async (req, res) => {
+    const farms = await Farm.paginate(
+        {},
+        {
+            page: req.query.page || 1,
+            limit: 20,
+            sort: "-_id",
+        }
+    );
+    farms.page = Number(farms.page);
+    let totalPages = farms.totalPages;
+    let currentPage = farms.page;
+    let startPage;
+    let endPage;
+
+    if (totalPages <= 10) {
+        startPage = 1;
+        endPage = totalPages;
+    } else {
+        if (currentPage <= 6) {
+            startPage = 1;
+            endPage = 10;
+        } else if (currentPage + 4 >= totalPages) {
+            startPage = totalPages - 9;
+            endPage = totalPages;
+        } else {
+            startPage = currentPage - 5;
+            endPage = currentPage + 4;
+        }
+    }
+    res.render('farms/index', {
+        farms,
+        startPage,
+        endPage,
+        currentPage,
+        totalPages
+    });
+});
+
+module.exports.clusterMap = async (req, res) => {
     const farms = await Farm.find({});
-    res.render('farms/index', { farms })
+    res.render('farms/clusterMap', { farms })
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -21,7 +67,7 @@ module.exports.createFarm = async (req, res, next) => {
     farm.geometry = geoData.body.features[0].geometry;
     farm.author = req.user._id;
     await farm.save();
-    console.log(farm)
+    // console.log(farm)
     req.flash('success', '新增景點成功！');
     res.redirect(`/farms/${farm._id}`)
 }

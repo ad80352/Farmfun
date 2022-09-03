@@ -8,27 +8,29 @@ const { isLoggedIn, isAuthor, validateFarm } = require('../middleware');
 router.route('/')
     .get(catchAsync(farms.index))
     .post(
-    isLoggedIn, 
-    validateFarm, 
-    catchAsync(farms.createFarm));
+        isLoggedIn,
+        validateFarm,
+        catchAsync(farms.createFarm));
+
+router.get('/clusterMap', catchAsync(farms.clusterMap))
 
 router.get('/new', isLoggedIn, farms.renderNewForm);
 
 router.route('/:id')
-        .get(catchAsync(farms.showFarm))
-        .put(
-            isLoggedIn, 
-            isAuthor, 
-            validateFarm, 
-            catchAsync(farms.updateFarm))
-        .delete(
-            isLoggedIn, 
-            isAuthor, 
-            catchAsync(farms.deleteFarm));
+    .get(catchAsync(farms.showFarm))
+    .put(
+        isLoggedIn,
+        isAuthor,
+        validateFarm,
+        catchAsync(farms.updateFarm))
+    .delete(
+        isLoggedIn,
+        isAuthor,
+        catchAsync(farms.deleteFarm));
 
-router.get('/:id/edit', 
-    isLoggedIn, 
-    isAuthor, 
+router.get('/:id/edit',
+    isLoggedIn,
+    isAuthor,
     catchAsync(farms.editFarm))
 
 module.exports = router;

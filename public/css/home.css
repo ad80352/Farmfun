@@ -1,0 +1,83 @@
+body{
+    height: 100vh;
+    background-image: 
+        linear-gradient(
+            rgba(0, 0, 0, .4), 
+            rgba(0, 0, 0, .4)),
+        url('https://images.unsplash.com/photo-1512237798647-84b57b22b517?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+#navbarNavAltMarkup a {
+    color: rgb(216, 218, 219);
+    margin-right: 1rem;
+}
+
+#slogan {
+    backface-visibility: hidden;
+}
+
+#slogan-primary{
+    animation-name: moveInBottom;
+
+    animation-duration: .8s;
+    animation-timing-function: ease-out;
+    animation-delay: .5s;
+    animation-fill-mode: backwards;
+}
+
+#slogan-sub{
+    animation-name: moveInBottom;
+
+    animation-duration: .8s;
+    animation-timing-function: ease-out;
+    animation-delay: .8s;
+    animation-fill-mode: backwards;
+}
+
+
+.btn,
+.btn:visited {
+    letter-spacing: 1.2px;
+    background-color : rgba(255, 255, 255, 0.6);
+    color: #000;
+    border: 1px solid gray;
+    padding: .6rem 1.2rem;
+    border-radius: 10rem;
+    font-size: 1.2rem;
+
+    animation-name: moveInBottom;
+
+    animation-duration: .5s;
+    animation-timing-function: ease-out;
+    animation-delay: 1.3s;
+    animation-fill-mode: backwards;
+}
+  
+.btn:hover{
+    background-color: none;
+    border-color: #e4cc6b;
+    border: 2px solid #e4cc6b;
+    color: #fff;
+    box-shadow: 0 0.5rem 0.5rem -0.4rem #e4cc6b;
+    transform: translateY(-.1rem);
+  }
+
+.btn:active{
+    background-color: none;
+    transform: translateY(.1rem);
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
