@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 const mongoose = require('mongoose');
 const farms = require('./farms')
 const Farm = require('../models/farm')
+const users = require('../models/user')
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/FarmFun';
 
