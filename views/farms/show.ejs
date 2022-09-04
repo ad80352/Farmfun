@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/scrollToTop.css">
 
 
-    <a class="btn btn-outline-secondary d-md-none mb-3" href="/farms">&larr;返回</a>
+    <a class="btn btn-outline-secondary d-md-none d-block mb-3" href="/farms">&larr;返回</a>
 
     <div class="row">
         <div class="col-md-6">
@@ -38,7 +38,6 @@
                                     電話：<%= farm.tel %>
                                 </li>
                                 <% } %>
-
                                     <% if (farm.openHours) { %>
                                         <li class="list-group-item list-group-item-four ">
                                             <img id="img" src="/door.png" alt="">&nbsp;
@@ -140,16 +139,15 @@
                     </span>
                 </div>
             </div>
-            <% } %>
+        <% } %>
     </div>
 
+
+    <a class="btn btn-outline-secondary d-md-inline d-block mt-3" href="/farms">&larr;返回</a>
+    
+
     <button onclick="scrollToTop()" class="btn" id="scrollToTop">TOP</button>
-
-    <footer>
-        <a class="btn btn-outline-secondary mt-3" href="/farms">&larr;返回</a>
-    </footer>
-
-
+</div>    
     <script>
         const farm = <%- JSON.stringify(farm) %>
     </script>
