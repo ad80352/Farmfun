@@ -322,8 +322,8 @@ module.exports =
     "City": "宜蘭縣",
     "Town": "羅東鎮",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/AgriStay01/APPLY_D/20160118101145.jpg",
-    "Latitude": "25.0315299",
-    "Longitude": "121.5198715"
+    "Latitude": "24.6830960",
+    "Longitude": "121.8005492"
     },
     {
     "ID": "01_31",
@@ -1772,8 +1772,8 @@ module.exports =
     "City": "臺東縣",
     "Town": "關山鎮",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/HomeStayMain01/APPLY_D/20151110163035.jpg",
-    "Latitude": "25.0315299",
-    "Longitude": "121.5198715"
+    "Latitude": "23.0408194",
+    "Longitude": "121.1607868"
     },
     {
     "ID": "02_69",
@@ -1797,8 +1797,8 @@ module.exports =
     "City": "臺東縣",
     "Town": "關山鎮",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/HomeStayMain01/APPLY_D/20151110163620.jpg",
-    "Latitude": "25.0315299",
-    "Longitude": "121.5198715"
+    "Latitude": "23.04371800",
+    "Longitude": "121.1683238"
     },
     {
     "ID": "02_7",
@@ -1947,8 +1947,8 @@ module.exports =
     "City": "臺東縣",
     "Town": "太麻里鄉",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/HomeStayMain01/APPLY_D/20151110163139.jpg",
-    "Latitude": "25.0315299",
-    "Longitude": "121.5198715"
+    "Latitude": "22.6454466",
+    "Longitude": "120.9599305"
     },
     {
     "ID": "02_75",

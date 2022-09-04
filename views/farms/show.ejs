@@ -1,27 +1,22 @@
 <% layout('layouts/boilerplate') %>
     <link rel="stylesheet" href="/css/star.css">
     <link rel="stylesheet" href="/css/showMap.css">
+    <link rel="stylesheet" href="/css/scrollToTop.css">
 
-    <a class="btn btn-outline-secondary d-md-none mb-3" href="javascript:history.go(-1)">&larr;返回</a>
+
+    <a class="btn btn-outline-secondary d-md-none mb-3" href="/farms">&larr;返回</a>
 
     <div class="row">
         <div class="col-md-6">
             <section class="card">
                 <img class="card-img-top"
-                    style="background-size: cover; background-position: center ;height: 24rem; background-image: url('<%= farm.image %>')" alt="">
+                    style="background-size: cover; background-position: center ;height: 24rem; background-image: url('<%= farm.image %>')"
+                    alt="">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-four fs-4 d-flex justify-content-between">
+                    <li class="list-group-item list-group-item-four fs-4">
                         <strong>
                             <%= farm.title %>
                         </strong>
-                        <% if (currentUser && farm.author.equals(currentUser._id)) { %>
-                            <div>
-                                <a class="btn btn-success opacity-75 btn-sm" href="/farms/<%=farm._id%>/edit">編輯</a>
-                                <form class="d-inline ms-2" action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
-                                    <button class="btn btn-danger opacity-75 btn-sm">刪除</button>
-                                </form>
-                            </div>
-                            <% } %>
                     </li>
                     <li class="list-group-item list-group-item-four">
                         <img id="img" src="/location.png" alt="">&nbsp;
@@ -51,13 +46,29 @@
                                         </li>
                                         <% } %>
 
-                                            <li class="list-group-item list-group-item-four ">
-                                                <img id="img" src="/card.png" alt="">&nbsp;
-                                                信用卡：<%= farm.creditCard===true ? '可' :'不可' %>&emsp;&emsp;
-                                                    國旅卡：<%= farm.travelCard===true ? '可' :'不可' %>
+                                            <li class="list-group-item list-group-item-four flex-column">
+                                                <div>
+                                                    <img id="img" src="/card.png" alt="">&nbsp;
+                                                    信用卡：<%= farm.creditCard===true ? 'Ｏ' :'Ｘ' %>
+                                                </div>
+                                                <div>
+                                                    <img id="img" src="/card.png" alt="">&nbsp;
+                                                    國旅卡：<%= farm.travelCard===true ? 'Ｏ' :'Ｘ' %>
+                                                </div>
                                             </li>
-                                            <li class="list-group-item list-group-item-four">
-                                                管理者：<%= farm.author.username %>
+                                            <li
+                                                class="list-group-item list-group-item-four  d-flex justify-content-between">
+                                                <span>管理者：<%= farm.author.username %></span>
+                                                <% if (currentUser && farm.author.equals(currentUser._id)) { %>
+                                                    <div>
+                                                        <a class="btn btn-success opacity-75 btn-sm"
+                                                            href="/farms/<%=farm._id%>/edit">編輯</a>
+                                                        <form class="d-inline ms-2"
+                                                            action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
+                                                            <button class="btn btn-danger opacity-75 btn-sm">刪除</button>
+                                                        </form>
+                                                    </div>
+                                                    <% } %>
                                             </li>
                 </ul>
             </section>
@@ -83,8 +94,8 @@
                         <label for="first-rate5" title="Amazing">5 stars</label>
                     </fieldset>
                     <div>
-                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
-                        required placeholder="輸入評論......"></textarea>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required
+                            placeholder="輸入評論......"></textarea>
                         <label class="form-label text-secondary" for="body"></label>
                     </div>
                     <button class="btn btn-success opacity-75">送出</button>
@@ -99,14 +110,14 @@
     </div>
 
     <!-- 景點介紹 -->
-        <div class="rounded bg-two bg-opacity-75 p-3 mt-3 shadow-sm">
-            <h3 class="py-2">景點介紹</h3>
-            <hr>
-            <p class="py-2">
-                <%- farm.description %>
-            </p>
-        </div>
-        
+    <div class="rounded bg-two bg-opacity-75 p-3 mt-3 shadow-sm">
+        <h3 class="py-2">景點介紹</h3>
+        <hr>
+        <p class="py-2">
+            <%- farm.description %>
+        </p>
+    </div>
+
     <!-- 評論 -->
     <div class="d-flex flex-wrap d-grid gap-3">
         <% for (let review of farm.reviews) { %>
@@ -129,16 +140,19 @@
                     </span>
                 </div>
             </div>
-            <% } %>  
+            <% } %>
     </div>
 
+    <button onclick="scrollToTop()" class="btn" id="scrollToTop">TOP</button>
+
     <footer>
-        <a class="btn btn-outline-secondary mt-3" href="javascript:history.go(-1)">&larr;返回</a>
+        <a class="btn btn-outline-secondary mt-3" href="/farms">&larr;返回</a>
     </footer>
 
 
-<script>
-    const farm = <%- JSON.stringify(farm) %>
-</script>
+    <script>
+        const farm = <%- JSON.stringify(farm) %>
+    </script>
 
-<script src="/js/showMap.js"></script>
+    <script src="/js/showMap.js"></script>
+    <script src="/js/scrollToTop.js"></script>

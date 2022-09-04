@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/scrollToTop.css">
 
   <h1 class="text-center mb-2 mb-md-4 fw-bold text-secondary">景點一覽</h1>
 
@@ -24,3 +25,7 @@
       <% } %>
     </div>
     <%- include('../partials/paginate') %>
+
+<button onclick="scrollToTop()" class="btn" id="scrollToTop">TOP</button>
+
+<script src="/js/scrollToTop.js"></script>
