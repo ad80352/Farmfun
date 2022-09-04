@@ -80,7 +80,7 @@ body{
 .btn:hover{
     background-color: transparent;
     border-color: #e4cc6b;
-    border: 3px solid #e4cc6b;
+    border: 2px solid #e4cc6b;
     color: #fff;
     box-shadow: 0 .5rem .5rem -.3rem #e4cc6b;
     transform: translateY(-.1rem);
