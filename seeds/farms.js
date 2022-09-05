@@ -522,8 +522,8 @@ module.exports =
     "City": "臺南市",
     "Town": "白河區",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/HomeStayMain01/APPLY_D/20151110161653.jpg",
-    "Latitude": "23.3629177",
-    "Longitude": "23.3629177"
+    "Latitude": "23.3679827",
+    "Longitude": "120.4181760"
     },
     {
     "ID": "02_11",
