@@ -647,8 +647,8 @@ module.exports =
     "City": "臺南市",
     "Town": "七股區",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/HomeStayMain01/APPLY_D/20151110161611.jpg",
-    "Latitude": "23.0970279",
-    "Longitude": "23.0970279"
+    "Latitude": "23.0963791",
+    "Longitude": "120.0908372"
     },
     {
     "ID": "02_18",
@@ -1072,8 +1072,8 @@ module.exports =
     "City": "宜蘭縣",
     "Town": "五結鄉",
     "Photo": "https://ezgo.coa.gov.tw/Uploads/opendata/HomeStayMain01/APPLY_D/20151110144604.jpg",
-    "Latitude": "121.8074387",
-    "Longitude": "121.8074387"
+    "Latitude": "24.6732788",
+    "Longitude": "121.8094911"
     },
     {
     "ID": "02_4",
