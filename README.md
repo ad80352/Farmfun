@@ -6,6 +6,8 @@
 
 網址：https://mighty-waters-62467.herokuapp.com/
 
+此 [農宿景點資訊網](https://mighty-waters-62467.herokuapp.com/) 為新手展示用作品，未臻完備之處尚待學習與改進，感謝您的賜教。
+
 &emsp;
 
 > 資料來源：[政府資料開放平台__來到農村住一晚](https://data.gov.tw/dataset/6413)
@@ -19,8 +21,6 @@
 - 依據使用者行為產生對應的 Flash
 - 將地址轉換為座標並顯示於 Cluster Map
 - RESTful API
-
-&emsp;
 
 ### Normal Route
 
@@ -87,5 +87,3 @@
 ## Template
 
 - EJS
-
----
