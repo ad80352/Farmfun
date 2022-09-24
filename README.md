@@ -33,8 +33,6 @@
 
 ### Farm Route
 
----
-
 | Method | Route             |                      |
 | ------ | ----------------- | -------------------- |
 | GET    | /farms            | 查看所有景點         |
@@ -49,16 +47,12 @@
 
 ### Review Route
 
----
-
 | Method | Route                        |          |
 | ------ | ---------------------------- | -------- |
 | POST   | /farms/:id/reviews           | 新增評論 |
 | DELETE | /farms/:id/reviews/:reviewId | 刪除評論 |
 
 ### User Route
-
----
 
 | Method | Route     |                                 |
 | ------ | --------- | ------------------------------- |
@@ -97,21 +91,3 @@
 - EJS
 
 ---
-
-<!-- &emsp;
-## 簡易網站展示
-&emsp;
-### -- 農宿列表、資訊、地圖
-![農宿列表](./image/readme/indexPage.png)
-![農宿資訊](./image/readme/showPage.png)
-![農宿地圖](./image/readme/mapPage.png)
-&emsp;
-### -- 使用者新增評論
-![使用者新增評論](./image/readme/reviewDemo.png)
-&emsp;
-### -- 切換為景點管理者
-![切換使用者](./image/readme/userChange.png)
-&emsp;
-### -- 新增景點
-
-![新景點於地圖](./image/readme/includeNew.png) -->
