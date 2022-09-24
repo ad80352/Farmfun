@@ -11535,6 +11535,14 @@ textarea.form-control-lg {
   height: 50px;
 }
 
+#navbarNavAltMarkup svg {
+  margin-bottom: 5px;
+  margin-right: 4px;
+}
+#navbarNavAltMarkup a:hover {
+  border-bottom: 0.25rem solid rgb(216, 218, 219);
+}
+
 #img {
   width: 18px;
   height: 18px;

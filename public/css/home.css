@@ -13,12 +13,12 @@ body{
 }
 
 /* #nav-home{
-    color: rgba(216, 218, 219);
+    color: rgb(216, 218, 219);
 } */
 
 #nav-home{
-    color: rgba(216, 218, 219, 1);
-    border-bottom: .25rem solid rgba(216, 218, 219);
+    color: rgb(216, 218, 219);
+    border-bottom: .25rem solid rgb(216, 218, 219);
 }
 
 .nav-link {
@@ -30,8 +30,8 @@ body{
 
 .nav-link:hover,
 .nav-link:active {
-    color: rgba(216, 218, 219);
-    border-bottom: .25rem solid rgba(216, 218, 219);
+    color: rgb(216, 218, 219);
+    border-bottom: .25rem solid rgb(216, 218, 219);
 }
 
 /* 這是幹麻的？ */
@@ -61,7 +61,7 @@ body{
 .btn:link,
 .btn:visited {
     letter-spacing: 1.2px;
-    background-color : rgba(255, 255, 255, 0.6);
+    background-color : rgba(255, 255, 255, .6);
     color: #000;
     border: 1px solid gray;
     padding: .8rem 1.4rem;

@@ -13,18 +13,18 @@
                     style="background-size: cover; background-position: center ;height: 24rem; background-image: url('<%= farm.image %>')"
                     alt="">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-four fs-4">
+                    <li class="list-group-item list-group-item-white fs-4">
                         <strong>
                             <%= farm.title %>
                         </strong>
                     </li>
-                    <li class="list-group-item list-group-item-four">
+                    <li class="list-group-item list-group-item-white">
                         <img id="img" src="/location.png" alt="">&nbsp;
                         地址：<%= farm.address %>
                     </li>
 
                     <% if (farm.website) { %>
-                        <li class="list-group-item list-group-item-four">
+                        <li class="list-group-item list-group-item-white">
                             <img id="img" src="/earth.png" alt="">&nbsp;
                             網站：<a href="<%= farm.website %>" target="_blank">
                                 <%= farm.website %>
@@ -33,19 +33,19 @@
                         <% } %>
 
                             <% if (farm.tel) { %>
-                                <li class="list-group-item list-group-item-four">
+                                <li class="list-group-item list-group-item-white">
                                     <img id="img" src="/phone.png" alt="">&nbsp;
                                     電話：<%= farm.tel %>
                                 </li>
                                 <% } %>
                                     <% if (farm.openHours) { %>
-                                        <li class="list-group-item list-group-item-four ">
+                                        <li class="list-group-item list-group-item-white ">
                                             <img id="img" src="/door.png" alt="">&nbsp;
                                             開放時間：<%= farm.openHours %>
                                         </li>
                                         <% } %>
 
-                                            <li class="list-group-item list-group-item-four flex-column">
+                                            <li class="list-group-item list-group-item-white flex-column">
                                                 <div>
                                                     <img id="img" src="/card.png" alt="">&nbsp;
                                                     信用卡：<%= farm.creditCard===true ? 'Ｏ' :'Ｘ' %>
@@ -56,7 +56,7 @@
                                                 </div>
                                             </li>
                                             <li
-                                                class="list-group-item list-group-item-four  d-flex justify-content-between align-items-center">
+                                                class="list-group-item list-group-item-white  d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <img id="img" src="/user.png" alt="">&nbsp;
                                                     <span>管理者：<%= farm.author.username %></span>
@@ -64,10 +64,14 @@
                                                 </div>
                                                         <div>
                                                         <a class="btn btn-success opacity-75 btn-sm"
-                                                            href="/farms/<%=farm._id%>/edit">編輯</a>
+                                                            href="/farms/<%=farm._id%>/edit"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-pencil me-1 mb-1" viewBox="0 0 16 16">
+                                                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                              </svg>編輯</a>
                                                         <form class="d-inline ms-2"
                                                             action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
-                                                            <button class="btn btn-danger opacity-75 btn-sm">刪除</button>
+                                                            <button class="btn btn-danger opacity-75 btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash3 me-1 mb-1" viewBox="0 0 16 16">
+                                                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                              </svg>刪除</button>
                                                         </form>
                                                     </div>
                                                     <% } %>
@@ -76,10 +80,13 @@
             </section>
         </div>
         <div class="col-md-6 d-flex flex-column <%= (currentUser)? 'justify-content-between':'' %>">
-            <div id='map' class="rounded border border-five mb-2 show"></div>
+            <div id='map' class="rounded border border-five mb-2"></div>
             <% if (currentUser) { %>
-                <form action="/farms/<%=farm._id%>/reviews" class="rounded bg-five bg-opacity-25 p-3" method="POST">
-                    <h3 class="text-secondary text-center"><strong>留下評論</strong></h3>
+                <form action="/farms/<%=farm._id%>/reviews" class="rounded bg-five bg-opacity-25 p-3 shadow-sm" method="POST">
+                    <h3 class="text-secondary text-center"><strong>留下評論</strong><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-text ms-2 mb-2" viewBox="0 0 16 16">
+                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                        <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zm0 2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                      </svg></h3>
                     <hr>
                     <fieldset class="starability-basic">
                         <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
@@ -97,14 +104,17 @@
                     </fieldset>
                     <div>
                         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required
-                            placeholder="輸入評論......"></textarea>
+                            placeholder="輸入評論......" maxlength="100"></textarea>
                         <label class="form-label text-secondary" for="body"></label>
                     </div>
                     <button class="btn btn-success opacity-75">送出</button>
                 </form>
                 <% } else { %>
                     <div class="rounded bg-five bg-opacity-25 p-3 text-center my-auto" id="login">
-                        <h3 class="mt-4 text-secondary fw-bold mb-3">若欲留言，請先登入</h3>
+                        <h3 class="mt-4 text-secondary fw-bold mb-3">若欲留言，請先登入<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-text ms-2 mb-2" viewBox="0 0 16 16">
+                            <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                            <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zm0 2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                          </svg></h3>
                         <a href="/login" class="btn btn-success opacity-75 fw-bold mb-4">登入</a>
                     </div>
                     <% } %>
@@ -112,29 +122,36 @@
     </div>
 
     <!-- 景點介紹 -->
-    <div class="rounded bg-two bg-opacity-75 p-3 mt-3 shadow-sm">
-        <h3 class="py-2">景點介紹</h3>
-        <hr>
+    <div class="rounded bg-main bg-opacity-25 p-3 mt-3 shadow-sm border border-five">
+        <p class="fs-4 text-secondary"><strong>Intro</strong> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+          </svg></p>
         <p class="py-2">
             <%- farm.description %>
         </p>
     </div>
 
     <!-- 評論 -->
-    <div class="d-flex flex-wrap d-grid gap-3 mb-3">
+    <div class="d-flex flex-wrap d-grid gap-2 mb-3">
         <% for (let review of farm.reviews) { %>
-            <div class="card mt-3 bg-light bg-opacity-25">
+            <div class="card mt-3 text-bg-white shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <p class="starability-result" data-rating="<%= review.rating %>">
                         </p>
                         <% if (currentUser && review.author.equals(currentUser._id)) { %>
                             <form action="/farms/<%=farm._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                                <button class="btn btn-sm btn-danger opacity-75 ms-2">刪除</button>
+                                <button class="btn btn-sm btn-danger opacity-75 ms-2"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash3 me-1 mb-1" viewBox="0 0 16 16">
+                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                  </svg>刪除</button>
                             </form>
                             <% } %>
                     </div>
                     <span class="card-title fw-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
                         <%= review.author.username %>：
                     </span>
                     <span class="card-text">

@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== "product") {
     require('dotenv').config();
 }
 
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -13,6 +14,9 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+// const helmet = require('helmet');
+
+const mongoSanitize = require('express-mongo-sanitize');
 
 // Routes
 const userRoutes = require('./routers/user');
@@ -42,11 +46,18 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+
 //加了，才能在外部讀取資料夾內的檔案
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(express.static(path.join(__dirname, 'image')));
+
+//關於mongo query的安全性防護
+app.use(mongoSanitize());
+
 
 const secret = process.env.SECRET || 'thisshouldbeabetterscrect';
 
@@ -63,6 +74,7 @@ store.on('error', function (e) {
 })
 
 const sessionConfig = {
+    name: 'session',
     store,
     secret,
     resave: false,
@@ -78,6 +90,8 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
+// 這個安全性功能會讓我的圖片不能加載（因為圖片網址不在白名單內，所以就先不管了）
+// app.use(helmet.crossOriginEmbedderPolicy({ policy: "credentialless" }));
 
 // 登入功能
 app.use(passport.initialize());
@@ -106,8 +120,8 @@ app.use((req, res, next) => {
     next();
 })
 
-
-app.use('/', userRoutes);  //為什麼你的"/"後面什麼都不用加？ register呢？
+//Route - Prefix
+app.use('/', userRoutes);  //為什麼你的"/"後面什麼都不用加？ register呢？ 更：他們沒有公因數，當然不用加
 app.use('/farms', farmRoutes);
 app.use('/farms/:id/reviews', reviewRoutes);
 

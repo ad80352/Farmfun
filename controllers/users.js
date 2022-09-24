@@ -12,7 +12,7 @@ module.exports.register = async (req, res) => {
         // req.login()，註冊成功後無須再登入
         req.login(registeredUser, err => {
             if (err) return next(err);
-            req.flash('success', '歡迎加入！');
+            req.flash('success', `${username}，歡迎加入！`);
             res.redirect('/farms');
         })
     } catch (e) {
@@ -31,7 +31,9 @@ module.exports.renderLogin = (req, res) => {
 }
 
 module.exports.login = (req, res) => {
-    req.flash('success', '歡迎回來！');
+    const { username } = req.body;
+    req.flash('success', `${username}，歡迎回來！`);
+    // console.log(req.body.username)
     const redirectUrl = req.session.returnTo || '/farms';
     delete req.session.returnTo;
     res.redirect(redirectUrl);

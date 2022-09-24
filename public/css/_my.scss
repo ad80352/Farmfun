@@ -9,6 +9,21 @@
     height: 50px;
 }
 
+// navbar的svg
+#navbarNavAltMarkup {
+    svg{
+        margin-bottom: 5px;
+        margin-right: 4px;
+    }
+
+    a:hover{
+        border-bottom: .25rem solid rgb(216, 218, 219) ;
+    }
+}
+
+//navbar hover 
+
+
 // show的地址、網址等小圖示
 #img {
     width: 18px;

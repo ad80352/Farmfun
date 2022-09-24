@@ -12,9 +12,9 @@ router.route('/')
         validateFarm,
         catchAsync(farms.createFarm));
 
-router.get('/clusterMap', catchAsync(farms.clusterMap))
-
 router.get('/new', isLoggedIn, farms.renderNewForm);
+
+router.get('/clusterMap', catchAsync(farms.clusterMap))
 
 router.route('/:id')
     .get(catchAsync(farms.showFarm))
