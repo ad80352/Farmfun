@@ -4,8 +4,6 @@
 
 ![Demo](./image/readme/Demo.gif)
 
-網址：https://mighty-waters-62467.herokuapp.com/
-
 此 [農宿景點資訊網](https://mighty-waters-62467.herokuapp.com/) 為新手展示用作品，未臻完備之處尚待學習與改進，感謝您的賜教。
 
 &emsp;
