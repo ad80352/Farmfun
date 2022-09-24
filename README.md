@@ -24,8 +24,6 @@
 
 ### Normal Route
 
----
-
 | Method | Route |      |
 | ------ | ----- | ---- |
 | GET    | /     | 首頁 |
