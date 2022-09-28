@@ -69,7 +69,7 @@ email: ad80352@gmail.com
 - HTML
 - CSS / SCSS
 - JavaScript
-- AJAX / RESTful API / JSON
+- Promise / RESTful API / JSON
 
 ## Backend
 
