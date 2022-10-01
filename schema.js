@@ -30,7 +30,7 @@ module.exports.farmSchema = Joi.object({
         website: Joi.string().empty('').escapeHTML(),
         tel: Joi.string().empty('').escapeHTML(),
         openHours: Joi.string().empty('').escapeHTML(),
-        description: Joi.string().required().escapeHTML(),
+        description: Joi.string().required(),
         image: Joi.string().required().escapeHTML(),
         creditCard: Joi.boolean(),
         travelCard: Joi.boolean()

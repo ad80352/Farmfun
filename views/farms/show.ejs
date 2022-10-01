@@ -19,13 +19,13 @@
                         </strong>
                     </li>
                     <li class="list-group-item list-group-item-white">
-                        <img id="img" src="/location.png" alt="">&nbsp;
+                        <img id="showSVG" src="/location.png" alt="">&nbsp;
                         地址：<%= farm.address %>
                     </li>
 
                     <% if (farm.website) { %>
                         <li class="list-group-item list-group-item-white">
-                            <img id="img" src="/earth.png" alt="">&nbsp;
+                            <img id="showSVG" src="/earth.png" alt="">&nbsp;
                             網站：<a href="<%= farm.website %>" target="_blank">
                                 <%= farm.website %>
                             </a>
@@ -34,31 +34,31 @@
 
                             <% if (farm.tel) { %>
                                 <li class="list-group-item list-group-item-white">
-                                    <img id="img" src="/phone.png" alt="">&nbsp;
+                                    <img id="showSVG" src="/phone.png" alt="">&nbsp;
                                     電話：<%= farm.tel %>
                                 </li>
                                 <% } %>
                                     <% if (farm.openHours) { %>
                                         <li class="list-group-item list-group-item-white ">
-                                            <img id="img" src="/door.png" alt="">&nbsp;
+                                            <img id="showSVG" src="/door.png" alt="">&nbsp;
                                             開放時間：<%= farm.openHours %>
                                         </li>
                                         <% } %>
 
                                             <li class="list-group-item list-group-item-white flex-column">
                                                 <div>
-                                                    <img id="img" src="/card.png" alt="">&nbsp;
+                                                    <img id="showSVG" src="/card.png" alt="">&nbsp;
                                                     信用卡：<%= farm.creditCard===true ? 'Ｏ' :'Ｘ' %>
                                                 </div>
                                                 <div>
-                                                    <img id="img" src="/card.png" alt="">&nbsp;
+                                                    <img id="showSVG" src="/card.png" alt="">&nbsp;
                                                     國旅卡：<%= farm.travelCard===true ? 'Ｏ' :'Ｘ' %>
                                                 </div>
                                             </li>
                                             <li
                                                 class="list-group-item list-group-item-white  d-flex justify-content-between align-items-center">
                                                 <div>
-                                                    <img id="img" src="/user.png" alt="">&nbsp;
+                                                    <img id="showSVG" src="/user.png" alt="">&nbsp;
                                                     <span>管理者：<%= farm.author.username %></span>
                                                     <% if (currentUser && farm.author.equals(currentUser._id)) { %>
                                                 </div>
@@ -148,7 +148,7 @@
                             <% } %>
                     </div>
                     <span class="card-title fw-bold">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle mb-1" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                           </svg>

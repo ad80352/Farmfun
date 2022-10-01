@@ -4,7 +4,9 @@
 
 ![Demo](./image/readme/Demo.gif)
 
-網址：https://mighty-waters-62467.herokuapp.com/
+此 [農宿景點資訊網](https://mighty-waters-62467.herokuapp.com/) 為初學約四個月之新手作品，未臻完備之處尚待學習與改進，如有建議請不吝提出，感謝您的賜教。
+
+email: ad80352@gmail.com
 
 &emsp;
 
@@ -20,11 +22,7 @@
 - 將地址轉換為座標並顯示於 Cluster Map
 - RESTful API
 
-&emsp;
-
 ### Normal Route
-
----
 
 | Method | Route |      |
 | ------ | ----- | ---- |
@@ -32,8 +30,6 @@
 
 
 ### Farm Route
-
----
 
 | Method | Route             |                      |
 | ------ | ----------------- | -------------------- |
@@ -49,16 +45,12 @@
 
 ### Review Route
 
----
-
 | Method | Route                        |          |
 | ------ | ---------------------------- | -------- |
 | POST   | /farms/:id/reviews           | 新增評論 |
 | DELETE | /farms/:id/reviews/:reviewId | 刪除評論 |
 
 ### User Route
-
----
 
 | Method | Route     |                                 |
 | ------ | --------- | ------------------------------- |
@@ -77,7 +69,7 @@
 - HTML
 - CSS / SCSS
 - JavaScript
-- AJAX / RESTful API / JSON
+- Promise / RESTful API / JSON
 
 ## Backend
 
@@ -95,23 +87,3 @@
 ## Template
 
 - EJS
-
----
-
-<!-- &emsp;
-## 簡易網站展示
-&emsp;
-### -- 農宿列表、資訊、地圖
-![農宿列表](./image/readme/indexPage.png)
-![農宿資訊](./image/readme/showPage.png)
-![農宿地圖](./image/readme/mapPage.png)
-&emsp;
-### -- 使用者新增評論
-![使用者新增評論](./image/readme/reviewDemo.png)
-&emsp;
-### -- 切換為景點管理者
-![切換使用者](./image/readme/userChange.png)
-&emsp;
-### -- 新增景點
-
-![新景點於地圖](./image/readme/includeNew.png) -->

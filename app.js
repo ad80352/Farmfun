@@ -23,22 +23,21 @@ const userRoutes = require('./routers/user');
 const farmRoutes = require('./routers/farms');
 const reviewRoutes = require('./routers/reviews');
 
+// mongoDB connect
 const MongoStore = require('connect-mongo');
-
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/FarmFun';
-
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
-
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 })
+
 
 const app = express();
 
@@ -52,7 +51,6 @@ app.use(methodOverride('_method'));
 
 //加了，才能在外部讀取資料夾內的檔案
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(express.static(path.join(__dirname, 'image')));
 
 //關於mongo query的安全性防護
@@ -103,12 +101,6 @@ passport.serializeUser(User.serializeUser());
 // 從session移除user...登出? 511. 03:57
 passport.deserializeUser(User.deserializeUser());
 
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({ email: 'colttt@gmail.com', username: 'colttt' });
-    const newUser = await User.register(user, 'chicken');
-    res.send(newUser);
-})
-
 // 快取的middleware，不用個別綁定get、post等，只要加入關鍵字（success、error）就能呼叫flash，
 app.use((req, res, next) => {
     if (!['/login', '/'].includes(req.originalUrl)) {
@@ -121,7 +113,7 @@ app.use((req, res, next) => {
 })
 
 //Route - Prefix
-app.use('/', userRoutes);  //為什麼你的"/"後面什麼都不用加？ register呢？ 更：他們沒有公因數，當然不用加
+app.use('/', userRoutes);  //為什麼你的"/"後面什麼都不用加？ register呢？ 更：他們沒有公因網址，當然不用加
 app.use('/farms', farmRoutes);
 app.use('/farms/:id/reviews', reviewRoutes);
 
