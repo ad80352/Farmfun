@@ -16,8 +16,13 @@
         margin-right: 4px;
     }
 
+    // avoid hover boundary。https://yogeshchauhan.com/how-to-avoid-element-shift-on-border-change-while-hovering-in-css/
+    a{
+        border-bottom: .25rem solid transparent;
+    }
+
     a:hover{
-        border-bottom: .25rem solid rgb(216, 218, 219) ;
+        border-bottom-color: rgb(216, 218, 219);
     }
 }
 

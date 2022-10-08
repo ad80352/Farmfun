@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/css/showMap.css">
     <link rel="stylesheet" href="/css/scrollToTop.css">
 
-
+    <!-- RWD 才會出現的上方返回按鈕 -->
     <a class="btn btn-secondary opacity-75 d-md-none d-block mb-3" href="/farms">&larr;返回</a>
 
     <div class="row">
@@ -79,7 +79,7 @@
                 </ul>
             </section>
         </div>
-        <div class="col-md-6 d-flex flex-column <%= (currentUser)? 'justify-content-between':'' %>">
+        <div class="col-md-6 d-flex flex-column <%= (currentUser)? 'justify-content-between': '' %>">
             <div id='map' class="rounded border border-five mb-2"></div>
             <% if (currentUser) { %>
                 <form action="/farms/<%=farm._id%>/reviews" class="rounded bg-five bg-opacity-25 p-3 shadow-sm" method="POST">
@@ -166,11 +166,14 @@
     <a class="btn btn-secondary opacity-75 d-md-inline d-block mt-3" href="/farms">&larr;返回</a>
     
 
-    <button onclick="scrollToTop()" class="btn" id="scrollToTop">TOP</button>
+    <button onclick="scrollToTop()" class="btn hidden" id="myBtn">TOP</button>
 </div>    
+
+    <!-- 將 farm 轉為 mapbox 要求的 json 格式 -->
     <script>
         const farm = <%- JSON.stringify(farm) %>
     </script>
 
+    <!-- 引入 mapbox、toTop -->
     <script src="/js/showMap.js"></script>
     <script src="/js/scrollToTop.js"></script>

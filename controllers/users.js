@@ -33,7 +33,7 @@ module.exports.renderLogin = (req, res) => {
 module.exports.login = (req, res) => {
     const { username } = req.body;
     req.flash('success', `${username}，歡迎回來！`);
-    // console.log(req.body.username)
+    console.log(req.body.username)
     const redirectUrl = req.session.returnTo || '/farms';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
@@ -42,6 +42,7 @@ module.exports.login = (req, res) => {
 module.exports.logout = (req, res, next) => {
     req.logout(function (err) {
         if (err) { return next(err); }
+        console.log(req.body)
         req.flash('success', "期待您的再臨");
         res.redirect('/farms');
     });

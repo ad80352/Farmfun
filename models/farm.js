@@ -27,7 +27,7 @@ const FarmSchema = new Schema({
     image: String,
     creditCard: Boolean,
     travelCard: Boolean,
-    author: {
+    author: { 
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

@@ -11539,8 +11539,11 @@ textarea.form-control-lg {
   margin-bottom: 5px;
   margin-right: 4px;
 }
+#navbarNavAltMarkup a {
+  border-bottom: 0.25rem solid transparent;
+}
 #navbarNavAltMarkup a:hover {
-  border-bottom: 0.25rem solid rgb(216, 218, 219);
+  border-bottom-color: rgb(216, 218, 219);
 }
 
 #showSVG {

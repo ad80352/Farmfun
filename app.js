@@ -1,3 +1,4 @@
+// 設定環境變數，Develope 時取用 dotenv 的內容
 if (process.env.NODE_ENV !== "product") {
     require('dotenv').config();
 }
@@ -18,7 +19,7 @@ const User = require('./models/user');
 
 const mongoSanitize = require('express-mongo-sanitize');
 
-// Routes
+// 引入 Routes
 const userRoutes = require('./routers/user');
 const farmRoutes = require('./routers/farms');
 const reviewRoutes = require('./routers/reviews');
@@ -46,10 +47,12 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-app.use(express.urlencoded({ extended: true }));
+// for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true })); 
+// "methodOverride" let us use HTTP verbs such as PUT or DELETE in places where the client doesn't support it。每一筆請求都會先以 methodOverride 進行前置處理，須設定在route之前
 app.use(methodOverride('_method'));
 
-//加了，才能在外部讀取資料夾內的檔案
+// "path.join"：讓我們能在外部讀取目標資料夾內的檔案
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'image')));
 
@@ -59,6 +62,7 @@ app.use(mongoSanitize());
 
 const secret = process.env.SECRET || 'thisshouldbeabetterscrect';
 
+// store session in mongo
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
@@ -71,9 +75,10 @@ store.on('error', function (e) {
     console.log('SESSION STORE ERROR', e)
 })
 
+// set sessionConfig
 const sessionConfig = {
     name: 'session',
-    store,
+    store, //不將 session 存在 local 而是存在 mongoDB　裡（or session will gone as soon as we restart or stop the server）
     secret,
     resave: false,
     saveUninitialized: true,
@@ -86,9 +91,10 @@ const sessionConfig = {
     }
 }
 
+// use session and flash
 app.use(session(sessionConfig));
 app.use(flash());
-// 這個安全性功能會讓我的圖片不能加載（因為圖片網址不在白名單內，所以就先不管了）
+// 以下的安全性功能會讓我的圖片不能加載（因為圖片網址不在白名單內），所以就先不管了
 // app.use(helmet.crossOriginEmbedderPolicy({ policy: "credentialless" }));
 
 // 登入功能
@@ -98,16 +104,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 // 將user儲存到session
 passport.serializeUser(User.serializeUser());
-// 從session移除user...登出? 511. 03:57
+// 從session移除user（登出），511. 03:57
 passport.deserializeUser(User.deserializeUser());
 
-// 快取的middleware，不用個別綁定get、post等，只要加入關鍵字（success、error）就能呼叫flash，
+// flash's middleware，不用個別綁定get、post等，只要加入關鍵字（success、error）就能呼叫flash，
 app.use((req, res, next) => {
+    // 登入設定
     if (!['/login', '/'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl;
     }
     res.locals.currentUser = req.user;
-    res.locals.success = req.flash('success');
+
+    // success、error設定 
+    res.locals.success = req.flash('success'); //set 'success' as key value
     res.locals.error = req.flash('error');
     next();
 })

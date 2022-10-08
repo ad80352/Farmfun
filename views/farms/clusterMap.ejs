@@ -14,8 +14,10 @@
 </div>
 
 
+<!-- 將 farms 轉為 mapbox 要求的 json 格式-->
 <script>
     const farms = { features: <%- JSON.stringify(farms) %>}
 </script>
 
+<!-- 引入 ClusterMap -->
 <script src="/js/clusterMap.js"></script>

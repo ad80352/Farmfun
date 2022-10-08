@@ -47,6 +47,7 @@ module.exports.index = (async (req, res) => {
         currentPage,
         totalPages
     });
+    console.dir(req)
 });
 
 module.exports.clusterMap = async (req, res) => {
@@ -59,6 +60,7 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createFarm = async (req, res, next) => {
+    // 將地址轉為經緯度
     const geoData = await geocoder.forwardGeocode({
         query: req.body.farm.address,
         limit: 1
@@ -73,6 +75,7 @@ module.exports.createFarm = async (req, res, next) => {
 }
 
 module.exports.showFarm = async (req, res) => {
+    // populate: 讓原本在 mongo 只顯示 id 的 object 能在對象物件中展開
     const farm = await Farm.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
@@ -83,7 +86,7 @@ module.exports.showFarm = async (req, res) => {
         req.flash('error', '無法找到該景點');
         return res.redirect('/farms');
     }
-    res.render('farms/show', { farm })
+    res.render('farms/show', { farm });
 }
 
 module.exports.editFarm = async (req, res) => {
@@ -99,6 +102,7 @@ module.exports.editFarm = async (req, res) => {
 module.exports.updateFarm = async (req, res) => {
     const { id } = req.params;
     const farm = await Farm.findByIdAndUpdate(id, { ...req.body.farm })
+    console.dir(req.body)
     req.flash('success', '已更新景點資訊');
     res.redirect(`/farms/${farm._id}`);
 }

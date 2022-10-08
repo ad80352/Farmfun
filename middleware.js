@@ -14,6 +14,7 @@ module.exports.isLoggedIn = (req, res, next) => {
 module.exports.isAuthor = async(req, res, next) => {
     const { id } = req.params;
     const farm = await Farm.findById(id);
+    console.log(req.user._id)
     if(!farm.author.equals(req.user._id)) {
         req.flash('error', '抱歉，您沒有此權限。');
         return res.redirect(`/farms/${id}`);
